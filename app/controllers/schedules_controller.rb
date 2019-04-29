@@ -26,7 +26,7 @@ class SchedulesController < ApplicationController
 
   # PATCH/PUT /schedules/1
   def update
-    if @schedule.update(schedule_params)
+    if @schedule.update(title: params[:title])
       render json: @schedule
     else
       render json: @schedule.errors, status: :unprocessable_entity

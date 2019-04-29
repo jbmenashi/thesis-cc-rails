@@ -3,7 +3,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.order(:start_time)
 
     render json: @appointments
   end
