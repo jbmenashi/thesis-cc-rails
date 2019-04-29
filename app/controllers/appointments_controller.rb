@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:show, :update, :destroy]
+  before_action :set_appointment, only: [:show, :destroy]
 
   # GET /appointments
   def index
@@ -24,27 +24,16 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /appointments/1
-  def update
-    if @appointment.update(appointment_params)
-      render json: @appointment
-    else
-      render json: @appointment.errors, status: :unprocessable_entity
-    end
-  end
-
   # DELETE /appointments/1
   def destroy
     @appointment.destroy
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def appointment_params
       params.require(:appointment).permit(:title, :start_time, :end_time, :schedule_id)
     end
