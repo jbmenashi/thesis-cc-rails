@@ -5,10 +5,9 @@ class Appointment < ApplicationRecord
 
    def no_overlap
       same_schedule = Appointment.select(schedule_id: self.schedule_id)
-      byebug
-      for app in same_schedule do
-         if (self.start_time >= app.start_time && self.start_time <= app.end_time) || (self.end_time >= app.start_time && self.end_time <= app.end_time)
-            errors.add(:start_time, "cannot overlap appointments")
+      for appointment in same_schedule do
+         if (self.start_time >= appointment.start_time && self.start_time <= appointment.end_time) || (self.end_time >= appointment.start_time && self.end_time <= appointment.end_time)
+            errors.add(:start_time, "cannot overlap appointment")
          end
       end
    end
